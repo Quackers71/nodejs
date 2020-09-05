@@ -5,15 +5,18 @@ Node JS Courses and Learning
 - Node.js Crash Course on YT: https://youtu.be/fBNz5xF-Kx4
 - https://github.com/bradtraversy/node_crash_course
 
+- Node.js quick course
+- https://youtu.be/ENrzD9HAZK4
+
 ## Install vscode and other tools
 
 ### vscode
-sudo apt update &nbsp;
-sudo apt install software-properties-common apt-transport-https wget &nbsp;
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - &nbsp;
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" &nbsp;
-sudo apt update &nbsp;
-sudo apt install code &nbsp;
+sudo apt update <br/>
+sudo apt install software-properties-common apt-transport-https wget <br/>
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - <br/>
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" <br/>
+sudo apt update <br/>
+sudo apt install code <br/>
 
 ### vim
 sudo apt install -y vim
@@ -29,7 +32,7 @@ sudo apt install -y vim
 
 - taken from https://youtu.be/ENrzD9HAZK4
   - https://github.com/nvm-sh/nvm
-  - run: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash &nbsp;
+  - run: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash <br/>
 
 ## Node.js System Diagram
 ![](./node.js-system.png)
