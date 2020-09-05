@@ -8,12 +8,12 @@ Node JS Courses and Learning
 ## Install vscode and other tools
 
 ### vscode
-sudo apt update
-sudo apt install software-properties-common apt-transport-https wget
-wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add -
-sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
-sudo apt update
-sudo apt install code
+sudo apt update &nbsp;
+sudo apt install software-properties-common apt-transport-https wget &nbsp;
+wget -q https://packages.microsoft.com/keys/microsoft.asc -O- | sudo apt-key add - &nbsp;
+sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" &nbsp;
+sudo apt update &nbsp;
+sudo apt install code &nbsp;
 
 ### vim
 sudo apt install -y vim
@@ -29,7 +29,7 @@ sudo apt install -y vim
 
 - taken from https://youtu.be/ENrzD9HAZK4
   - https://github.com/nvm-sh/nvm
-  - run: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash \
+  - run: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash &nbsp;
 
 ## Node.js System Diagram
 ![](./node.js-system.png)
