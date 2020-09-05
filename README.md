@@ -35,4 +35,7 @@ sudo apt install -y vim
   - run: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash <br/>
 
 ## Node.js System Diagram
+
+- About Node.js
+  - An asynchronous event-driven JavaScript runtime.
 ![](./node.js-system.png)

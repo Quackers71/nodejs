@@ -1,12 +1,31 @@
-console.log(global.luckyNum);
+const { EventEmitter } = require('events');
+const eventEmitter = new EventEmitter();
 
-global.luckyNum = '23';
+eventEmitter.on('lunch', () => {
 
-console.log(global.luckyNum);
+    console.log('yummy ')
+})
 
-// Display platform
-console.log(process.platform);
+eventEmitter.emit('lunch');
+eventEmitter.emit('lunch');
+eventEmitter.emit('lunch');
 
-// Display user
-console.log(process.env.USER);
 
+// console.log(global.luckyNum);
+
+// global.luckyNum = '23';
+
+// console.log(global.luckyNum);
+
+// // Display platform
+// console.log(process.platform);
+
+// // Display user
+// console.log(process.env.USER);
+
+// // listen to event
+// process.on('exit', function() {
+
+//     // do somthing!
+
+// });
