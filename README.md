@@ -29,4 +29,7 @@ sudo apt install -y vim
 
 - taken from https://youtu.be/ENrzD9HAZK4
   - https://github.com/nvm-sh/nvm
-  - run: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  - run: wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash \
+
+## Node.js System Diagram
+![](./node.js-system.png)
