@@ -1,14 +1,23 @@
-const { EventEmitter } = require('events');
-const eventEmitter = new EventEmitter();
+const { readFile, readFileSync } = require('fs');
+// Think of 'Sync' === Blocking
 
-eventEmitter.on('lunch', () => {
+const txt = readFileSync('./hello.txt', 'utf8');
 
-    console.log('yummy ')
-})
+console.log(txt);
+console.log('do the ASAP');
 
-eventEmitter.emit('lunch');
-eventEmitter.emit('lunch');
-eventEmitter.emit('lunch');
+
+// const { EventEmitter } = require('events');
+// const eventEmitter = new EventEmitter();
+
+// eventEmitter.on('lunch', () => {
+
+//     console.log('yummy ')
+// })
+
+// eventEmitter.emit('lunch');
+// eventEmitter.emit('lunch');
+// eventEmitter.emit('lunch');
 
 
 // console.log(global.luckyNum);
