@@ -3,6 +3,7 @@ Node JS Courses and Learning
 
 ## Courses
 - Node.js Crash Course on YT: https://youtu.be/fBNz5xF-Kx4
+- https://github.com/bradtraversy/node_crash_course
 
 ## Install vscode and other required tools
 
