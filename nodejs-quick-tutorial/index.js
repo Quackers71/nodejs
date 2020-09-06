@@ -1,12 +1,13 @@
-const { read } = require('fs');
+const myModule = require('./my-module');
 
-const { readFile } = require('fs').promises;
+console.log(myModule);
+
+// const { readFile } = require('fs').promises;
 // Importing readFile from the promises Namespace
 
-async function hello() {
-    const file = await readFile('./hello.txt', 'utf8');
-}
-
+// async function hello() {
+//     const file = await readFile('./hello.txt', 'utf8');
+// }
 
 // Think of 'readFile' === Non blocking
 
