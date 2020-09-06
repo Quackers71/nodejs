@@ -1,6 +1,8 @@
-const myModule = require('./my-module');
+const express = require('express');
 
-console.log(myModule);
+
+
+// console.log(myModule);
 
 // const { readFile } = require('fs').promises;
 // Importing readFile from the promises Namespace
