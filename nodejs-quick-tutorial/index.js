@@ -1,15 +1,24 @@
-const { readFile, readFileSync } = require('fs');
+const { read } = require('fs');
+
+const { readFile } = require('fs').promises;
+// Importing readFile from the promises Namespace
+
+async function hello() {
+    const file = await readFile('./hello.txt', 'utf8');
+}
+
+
 // Think of 'readFile' === Non blocking
 
 // const txt = readFileSync('./hello.txt', 'utf8');
 
 // readFile with a Callback function
-readFile('./hello.txt', 'utf8', (err, txt) => {
-    console.log(txt);
-})
+// readFile('./hello.txt', 'utf8', (err, txt) => {
+//     console.log(txt);
+// })
 
 // console.log(txt);
-console.log('do the ASAP');
+// console.log('do the ASAP');
 
 
 // const { EventEmitter } = require('events');
