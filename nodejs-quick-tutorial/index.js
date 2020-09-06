@@ -1,4 +1,28 @@
 const express = require('express');
+const { request } = require('http');
+const { readFile } = require('fs');
+
+const app = express();
+
+app.get('/', (request, response) => {
+    readFile('./home.html', 'utf8', (err, html) => {
+
+        if (err) {
+            response.status(500).send('Sorry, out of order')
+        }
+
+        // res.writeHead(200, { "Content-Type": "text/html" });
+        // res.end(content, "utf8");
+        
+        response.send(html);
+    })
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// REQUEST - Users incoming data
+// RESPONSE - Your outgoing data
 
 
 
