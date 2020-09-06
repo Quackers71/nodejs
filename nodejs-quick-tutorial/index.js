@@ -1,11 +1,12 @@
 const express = require('express');
 const { request } = require('http');
-const { readFile } = require('fs');
+const { readFile } = require('fs').promises;
 
 const app = express();
 
-app.get('/', (request, response) => {
-    readFile('./home.html', 'utf8', (err, html) => {
+app.get('/', async (request, response) => {
+    
+    response.send( await readFile('./home.html', 'utf8', (err, html) => {
 
         if (err) {
             response.status(500).send('Sorry, out of order')
@@ -15,7 +16,7 @@ app.get('/', (request, response) => {
         // res.end(content, "utf8");
         
         response.send(html);
-    })
+    }) );
 });
 
 const PORT = process.env.PORT || 3000;
