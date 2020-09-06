@@ -1,9 +1,14 @@
 const { readFile, readFileSync } = require('fs');
-// Think of 'Sync' === Blocking
+// Think of 'readFile' === Non blocking
 
-const txt = readFileSync('./hello.txt', 'utf8');
+// const txt = readFileSync('./hello.txt', 'utf8');
 
-console.log(txt);
+// readFile with a Callback function
+readFile('./hello.txt', 'utf8', (err, txt) => {
+    console.log(txt);
+})
+
+// console.log(txt);
 console.log('do the ASAP');
 
 
