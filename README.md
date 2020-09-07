@@ -27,6 +27,7 @@ sudo apt install -y vim
   - sudo apt install -y npm
 
 ## Change the version of Node.js
+- within vscode or a terminal
   - nvm install 12.16.3
   - nvm use 12.16.3
   - node -v
