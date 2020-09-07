@@ -1,1 +1,5 @@
-console.log('Hello World from Node.js');
+const tutorial = require('./tutorial');
+
+console.log(tutorial);
+
+console.log(tutorial(1,1));
