@@ -8,6 +8,9 @@ Node JS Courses and Learning
 - Node.js quick course
 - https://youtu.be/ENrzD9HAZK4
 
+- Learn Node.js - Full Tutorial for Beginners
+- https://youtu.be/RLtyhwFtXQA
+
 ## Install vscode and other tools
 
 ### vscode
