@@ -1,0 +1,149 @@
+https://www.google.co.uk/search?sxsrf=ALeKk03tyKqOo2euYd-A7-HP2wdwp_QNDQ%3A1599687722150&source=hp&ei=KkxZX9C8BvTC8gKBma-QDQ&q=selinux+allow+write+to+directory&oq=&gs_lcp=ChFtb2JpbGUtZ3dzLXdpei1ocBABGAAyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECcyBwgjEOoCECdQAFgAYIoXaAFwAHgAgAEAiAEAkgEAmAEAsAEP&sclient=mobile-gws-wiz-hp
+
+https://wiki.gentoo.org/wiki/SELinux/Tutorials/How_SELinux_controls_file_and_directory_accesses
+
+https://unix.stackexchange.com/questions/116575/selinux-httpd-write-access-to-a-directory
+
+https://youtu.be/_WOKRaM-HI4
+
+https://www.youtube.com/watch?v=tXNr3gOgrn8 1 of 3
+https://youtu.be/O8YQVpneH5w 2 of 3
+
+getenforce
+setenforce 0 permissive
+setenforce 1 enforcing
+vim /etc/sysconfig/selinux
+log = /var/log/audit/audit.log
+ls -Z # to display context user | role | type
+ps -Zaux # display process by context type
+Labels
+setting up the context label
+semanage fcontext -l # all context labels applied to file system
+semanage fcontext -l | grep postgres ??? maybe
+semanage fcontext -l | grep http # show all context labels for http
+cd /var/www/
+ls -Z # will shows
+:httpd_sys_content_t:s0 html
+
+$ yum provides */sepolicy # helps generate a man page
+# if available go for policycoreutils-devel
+$ yum install -y policycoreutils-devel
+sepolicy --help
+man sepolicy
+man sepolicy-manpage
+cd /usr/share/man/
+ls
+sepolicy manpage -a -p /usr/share/man/man8 # mine man7???
+mandb # update the Db
+man -k _selinux
+manpages now showing ;-)
+
+vim /web/index.html
+vim /etc/httpd/conf/httpd.conf 
+systemctl restart httpd
+yum install -y elinks
+elinks http://localhost
+tail -f /var/log/audit/audit.log
+
+$ grep AVC /var/log/audit/audit.log
+$ semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+semanage fcontext -a -t httpd_sys_content_t "/web(/.*)?"
+
+[root@localhost man]# restorecon -R -v /web
+restorecon reset /web context unconfined_u:object_r:default_t:s0->unconfined_u:object_r:httpd_sys_content_t:s0
+restorecon reset /web/index.html context unconfined_u:object_r:default_t:s0->unconfined_u:object_r:httpd_sys_content_t:s0
+
+# selinux postgres replication policy
+https://wiki.postgresql.org/wiki/SEPostgreSQL_SELinux_Overview
+
+# from Nick G
+https://www.systutorials.com/docs/linux/man/8-postgresql_selinux/ 
+semanage fcontext -l | grep postgresql_db_t
+
+$ semanage fcontext -a -t postgresql_db_t "/postgres(/.*)?"
+$ restorecon -R -v /postgres
+$ semanage fcontext -a -t postgresql_db_t "/postgres-backup(/.*)?"
+$ restorecon -R -v /postgres-backup
+
+$ man postgresql_selinux > man_postgresql_selinux.txt
+https://github.com/Quackers71/nodejs/blob/master/man_postgresql_selinux.txt
+
+other things to look into:
+
+$ getsebool -a | grep postgresql
+postgresql_can_rsync --> off
+postgresql_selinux_transmit_client_label --> off
+postgresql_selinux_unconfined_dbadm --> on
+postgresql_selinux_users_ddl --> on
+selinuxuser_postgresql_connect_enabled --> off
+
+$ semanage port -l | grep postgresql
+postgresql_port_t              tcp      5432, 9898
+
+semanage boolean -l | grep postgresql
+postgresql_can_rsync           (off  ,  off)  Allow postgresql to use ssh and rsync for point-in-time recovery
+postgresql_selinux_users_ddl   (on   ,   on)  Allow unprivileged users to execute DDL statement
+selinuxuser_postgresql_connect_enabled (off  ,  off)  Allow users to connect to PostgreSQL
+postgresql_selinux_unconfined_dbadm (on   ,   on)  Allow database admins to execute DML statement
+postgresql_selinux_transmit_client_label (off  ,  off)  Allow transmit client label to foreign database
+
+$ sesearch -b postgresql_can_rsync -ACT | grep -v type_transit
+Found 16 semantic av rules:
+DT allow postgresql_t bin_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+DT allow postgresql_t ssh_home_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+DT allow postgresql_t ssh_home_t : file { ioctl read getattr lock open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t user_home_dir_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t home_root_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+DT allow postgresql_t user_home_dir_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+DT allow postgresql_t ssh_port_t : tcp_socket name_connect ; [ postgresql_can_rsync ]
+DT allow postgresql_t ssh_home_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t ssh_home_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t ssh_home_t : dir { ioctl read getattr lock search open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t ssh_exec_t : file { ioctl read getattr lock map execute execute_no_trans open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t rsync_exec_t : file { ioctl read getattr lock map execute execute_no_trans open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t home_root_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t bin_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t bin_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+DT allow postgresql_t bin_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+
+
+Found 48632 named file transition filename_trans:
+
+
+$ getsebool -a | grep postgresql
+postgresql_can_rsync --> off
+postgresql_selinux_transmit_client_label --> off
+postgresql_selinux_unconfined_dbadm --> on
+postgresql_selinux_users_ddl --> on
+selinuxuser_postgresql_connect_enabled --> off
+[root@localhost robq]# setsebool -P postgresql_can_rsync on
+[root@localhost robq]# setsebool -P selinuxuser_postgresql_connect_enabled on
+[root@localhost robq]# getsebool -a | grep postgresql
+postgresql_can_rsync --> on
+postgresql_selinux_transmit_client_label --> off
+postgresql_selinux_unconfined_dbadm --> on
+postgresql_selinux_users_ddl --> on
+selinuxuser_postgresql_connect_enabled --> on
+
+[root@localhost robq]# sesearch -b postgresql_can_rsync -ACT | grep -v type_transit
+Found 16 semantic av rules:
+ET allow postgresql_t bin_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+ET allow postgresql_t ssh_home_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+ET allow postgresql_t ssh_home_t : file { ioctl read getattr lock open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t user_home_dir_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t home_root_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+ET allow postgresql_t user_home_dir_t : lnk_file { read getattr } ; [ postgresql_can_rsync ]
+ET allow postgresql_t ssh_port_t : tcp_socket name_connect ; [ postgresql_can_rsync ]
+ET allow postgresql_t ssh_home_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t ssh_home_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t ssh_home_t : dir { ioctl read getattr lock search open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t ssh_exec_t : file { ioctl read getattr lock map execute execute_no_trans open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t rsync_exec_t : file { ioctl read getattr lock map execute execute_no_trans open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t home_root_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t bin_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t bin_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+ET allow postgresql_t bin_t : dir { getattr search open } ; [ postgresql_can_rsync ]
+
+
+Found 48632 named file transition filename_trans:
+
