@@ -21,9 +21,15 @@ class Person extends EventEmitter{
 }
 
 let quackers = new Person('Quackers');
+let scarlett = new Person('Scarlett');
+
+scarlett.on('name',()=>{
+    console.log('My name is ' + scarlett.name);
+});
+
 quackers.on('name',()=>{
     console.log('My name is ' + quackers.name);
-})
+});
 
 quackers.emit('name');
-
+scarlett.emit('name');
