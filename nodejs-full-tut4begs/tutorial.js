@@ -6,6 +6,5 @@ class SomeMathObject{
     }
 }
 
-module.exports.sum = sum;
-module.exports.PI = PI;
-module.exports.SomeMathObject = SomeMathObject;
+// export Object literals and tag along the properties
+module.exports = {sum : sum, PI : PI, SomeMathObject : SomeMathObject}
