@@ -2,11 +2,18 @@
 
 const fs = require('fs');
 
+fs.unlink('./tutorial/example.txt',(err)=>{
+    if(err)
+        console.log(err);
+    else
+        console.log('Successfully deleted the file');
+});
+
 fs.rmdir('tutorial',(err)=>{
     if(err)
         console.log(err);
     else
-        console.log('Folder deleted');
+        console.log('Successfully deleted the folder');
 });
 
 // fs.mkdir('tutorial',(err)=>{
