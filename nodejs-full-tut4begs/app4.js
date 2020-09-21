@@ -5,11 +5,10 @@ fs.mkdir('tutorial',(err)=>{
     if(err)
         console.log(err);
     else
-        fs.rmdir('tutorial',(err)=>{
+        fs.writeFile('./tutorial/example.txt','123',(err)=>{
             if(err)
                 console.log(err);
             else
-            console.log('successfully deleted the folder');
-        })
-        
+                console.log('Successfully create the file');
+        });        
 });
