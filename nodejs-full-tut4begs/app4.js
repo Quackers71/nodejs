@@ -17,6 +17,15 @@ fs.readdir('example',(err,files)=>{
         }
 });
 
+// Output post deletion:
+// $ node app4
+// [ 'a.txt', 'b.txt', 'c.txt', 'd.txt', 'e.txt' ]
+// Successfully deleted the file: a.txt
+// Successfully deleted the file: b.txt
+// Successfully deleted the file: c.txt
+// Successfully deleted the file: d.txt
+// Successfully deleted the file: e.txt
+
 // fs.unlink('./tutorial/example.txt',(err)=>{
 //     if(err)
 //         console.log(err);
