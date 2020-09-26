@@ -2,12 +2,19 @@
 // Why you should use Streams
 
 const fs = require('fs');
-fs.readFile('./largefile.txt',(err)=>{
-    if(err)
-        console.log(err);
-    else
-        console.log(file);
+
+const readStream = fs.createReadStream('./largefile.txt', 'utf8');
+
+readStream.on('data',(chunk)=>{
+    console.log(chunk);
 });
+
+// fs.readFile('./largefile.txt',(err)=>{
+//     if(err)
+//         console.log(err);
+//     else
+//         console.log(file);
+// });
 
 // Output from largefile.txt
 // $ node app5
