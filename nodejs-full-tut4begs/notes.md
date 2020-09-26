@@ -28,7 +28,7 @@ Lodash’s modular methods are great for:
 Within the package.json
 ```yaml
     "lodash": "^4.17.20" //major.minor.patch versioning
-                         // ^ means not major updates, minor and patching can be updated
+                         // ^ means no major updates, minor and patching can be updated
                          // ~ means patching can be updated i.e. ~4.17.x
                          //  4.17.20 only this version to be installed and used
 ```
