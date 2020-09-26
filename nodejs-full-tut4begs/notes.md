@@ -1,4 +1,6 @@
-# Link to how to create a large .txt file
+# Notes for Node.js - Full Tutorial for Beginners
+
+#### Link to how to create a large .txt file
 https://gist.github.com/olivertappin/0fc0b6a76e6555e51f884f9638249de2
 
 #### This example creates a 2.7Gb .txt file
@@ -7,7 +9,7 @@ https://gist.github.com/olivertappin/0fc0b6a76e6555e51f884f9638249de2
 #### This example create a 2.7Gb .txt file with random text
 - dd if=/dev/urandom of=sample.txt bs=1G count=1024 bs=2748576
 
-# For new packages goto
+#### For new packages goto
 https://www.npmjs.com/
 https://www.npmjs.com/package/lodash
 #### To install lodash use
@@ -21,3 +23,12 @@ Lodash’s modular methods are great for:
 - Manipulating & testing values
 - Creating composite functions
 
+#### Semantic Versioning
+
+Within the package.json
+```yaml
+    "lodash": "^4.17.20" //major.minor.patch versioning
+                         // ^ means not major updates, minor and patching can be updated
+                         // ~ means patching can be updated i.e. ~4.17.x
+                         //  4.17.20 only this version to be installed and used
+```
