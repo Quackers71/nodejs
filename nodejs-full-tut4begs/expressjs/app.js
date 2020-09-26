@@ -12,6 +12,7 @@ app.get('/example',(req,res)=>{
 
 app.get('/example/:name/:age',(req,res)=>{
     console.log(req.params);
+    console.log(req.query);
     res.send('Example with route params of name ' + req.params.name + ' and age ' + req.params.age);
 });
 

@@ -41,3 +41,17 @@ http://expressjs.com/
 - $ npm init --yes
 - $ npm install express
 
+#### using req.query
+
+http://localhost:3000/example/Q/49?tutorial=paramstutorial&sort=byage
+- Output:
+```yaml
+$ node app{ name: 'Q', age: '49' }
+{}
+{ name: 'Q', age: '49' }
+{ tutorial: 'paramstutorial', sort: 'byage' }
+```
+
+- Use route params when you must require the data i.e. name
+- Use query string params when only optional required i.e. sort
+
