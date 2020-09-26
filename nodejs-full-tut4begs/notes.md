@@ -37,6 +37,7 @@ Within the package.json
 
 http://expressjs.com/
 
-$ mkdir expressjs && cd expressjs
-$ npm init --yes
-$ npm install express
+- $ mkdir expressjs && cd expressjs
+- $ npm init --yes
+- $ npm install express
+
