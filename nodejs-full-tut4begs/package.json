@@ -11,7 +11,5 @@
   },
   "author": "robq",
   "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.20"
-  }
+  "dependencies": {}
 }
