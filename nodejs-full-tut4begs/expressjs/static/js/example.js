@@ -1,1 +1,4 @@
-console.log('Testing Client Side');
+const os = require('os');
+
+// Platform
+console.log(os.platform());
