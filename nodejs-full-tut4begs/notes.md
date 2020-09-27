@@ -55,3 +55,7 @@ $ node app{ name: 'Q', age: '49' }
 - Use route params when you must require the data i.e. name
 - Use query string params when only optional required i.e. sort
 
+#### http post request with Express and body parser Module
+```yaml
+$ npm install body-parser
+```
