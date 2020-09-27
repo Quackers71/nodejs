@@ -59,3 +59,12 @@ $ node app{ name: 'Q', age: '49' }
 ```yaml
 $ npm install body-parser
 ```
+
+Output from basic email and password post req app
+```yaml
+$ node app
+[Object: null prototype] {
+  email: 'quack@quack.com',
+  password: '**********'
+```
+
