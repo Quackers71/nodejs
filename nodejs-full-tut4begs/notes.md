@@ -68,3 +68,7 @@ $ node app
   password: '**********'
 ```
 
+### Running a side project - Basic Login System with Node.js, Express and MySQL
+
+taken from: https://codeshack.io/basic-login-system-nodejs-express-mysql/
+
