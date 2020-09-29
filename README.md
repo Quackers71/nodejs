@@ -24,10 +24,14 @@ sudo apt install code <br/>
 ### vim
 sudo apt install -y vim
 
-## Install nodejs, npm and nvm
+## Install nodejs, npm and nvm on Ubuntu
 - taken from https://www.geeksforgeeks.org/installation-of-node-js-on-linux/
   - sudo apt install -y nodejs
   - sudo apt install -y npm
+  
+## Install nodejs, npm and nvm on Centos
+
+- use this link: https://linuxize.com/post/how-to-install-node-js-on-centos-7/
 
 ## Change the version of Node.js
 - within vscode or a terminal
