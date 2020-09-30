@@ -38,11 +38,30 @@
     <body>
         <div class="login-form">
             <h1>Login Form</h1>
-            <form action="/" method="POST">
+            <form action="/" method="POST" id="form">
                 <input type="email" name="email" placeholder="Email address" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="submit">
             </form>
         </div>
-    </body>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNf0u91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(()=>{
+            $('#form').submit((e)=>{
+                e.preventDefault();
+                $.ajax({
+                    url : '/',
+                    type : 'post',
+                    contentType : 'application/json',
+                    data : JSON.stringify(('#form').serializeArray()),
+                    success : (response)=>{
+                        console.log('Successfully got response');
+                        console.log(response);
+                    }
+
+                });
+            });
+        });
+    </script>
+  </body>
 </html>
