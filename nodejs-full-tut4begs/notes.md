@@ -78,3 +78,4 @@ $ npm install joi@14.0.0
 ```
 #### User Input Validation with Express and JOI, pt 2
 
+This tutorial shows how to 'Develop a Schema for a nested object, and how to develop schemas for arrays and create your own custom schema objects for those arrays'
