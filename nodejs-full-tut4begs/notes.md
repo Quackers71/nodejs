@@ -74,5 +74,5 @@ taken from: https://codeshack.io/basic-login-system-nodejs-express-mysql/
 
 #### User Input Validation with Express and JOI
 ```yaml
-$ npm install joi
+$ npm install joi@14.0.0
 ```
