@@ -1,37 +1,33 @@
-// http post request with Express and body parser Module
-
-const express = require('express');
-const path = require('path');
 const Joi = require('joi');
-const bodyParser = require('body-parser');
-const app = express();
 
+const arrayString = ['banana','bacon','cheese'];
+const arrayObjects = [{example: 'example1'},{example: 'example2'},{example: 'example3'}];
 
-app.use('/public',express.static(path.join(__dirname,'static')));
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+const userInput = { personalInfo: {
+                        streetAddress : '123987987',
+                        city : 'kljlkajd',
+                        state : 'fl'
+                    },
+                    preferences : arrayObjects};
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname,'static','login.html'));
+const personalInfoSchema = Joi.object().keys({
+    streetAddress : Joi.string().trim().required(),
+    city : Joi.string().trim().required(),
+    state : Joi.string().trim().length(2).required()
 });
 
-app.post('/',(req,res)=>{
-    console.log(req.body);
-    const schema = Joi.object().keys({
-        email : Joi.string().trim().email().required(),
-        password : Joi.string().min(5).max(10).required()
-    });
-    Joi.validate(req.body,schema,(err,result)=>{
-        if(err){
-            console.log(err);
-            res.send('An error has occurred');
-        }
-        else {
+const preferencesSchema = Joi.array().items(Joi.object().keys({
+    example: Joi.string().required()
+}));
+
+const schema = Joi.object().keys({
+    personalInfo : personalInfoSchema,
+    preferences : preferencesSchema
+});
+
+Joi.validate(userInput,schema,(err,result)=>{
+    if(err)
+        console.log(err);
+    else
         console.log(result);
-        res.send('Successfully posted data');
-        }
-    })
-
 });
-
-app.listen(3000);
