@@ -22,7 +22,32 @@ sudo apt update <br/>
 sudo apt install code <br/>
 
 ### vim
-sudo apt install -y vim
+sudo apt install -y vim  
+  
+## Update 5th May 2021
+## Installing nodejs and npm in vscode on Linux Mint - run within a bash Terminal in vscode
+- taken from https://github.com/nvm-sh/nvm  
+  
+$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+re-open a new Terminal in vscode - bash run :
+$ nvm --version
+0.38.0
+$ nvm install v10
+$ node -v
+v10.24.1
+$ npm -v
+6.14.12  
+  
+or you could change the version with :
+$ nvm install v8
+then switch back to v10 with :
+$ nvm use v10  
+  
+to install a specific version - check with :
+$ nvm ls-remote v8
+then
+$ nvm install v8.8.1  
+  
 
 ## Install nodejs, npm and nvm on Ubuntu
 - taken from https://www.geeksforgeeks.org/installation-of-node-js-on-linux/
